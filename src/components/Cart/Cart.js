@@ -4,6 +4,7 @@ import { compose, withHandlers } from 'recompose';
 import { Row, Panel } from 'react-bootstrap';
 
 import CartItem from './CartItem';
+import CartToral from './CartTotal';
 
 const enhance = compose(
   withHandlers({
@@ -37,6 +38,7 @@ const Cart = ({ cart, handleAddUnit, handleDeductUnit, handleDeleteFromCart }) =
               />
             );
           })}
+          <CartToral cart={cart} />
         </Panel>
       </aside>
     </Row>
