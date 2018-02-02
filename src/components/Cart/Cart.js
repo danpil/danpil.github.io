@@ -49,7 +49,15 @@ const Cart = ({ cart, handleAddUnit, handleDeductUnit, handleDeleteFromCart }) =
       <aside className="cart">
         <Panel className="cartList" header="Cart" bsStyle="primary">
           {cart.map(cartItem => {
-            return <CartItem />;
+            return (
+              <CartItem
+                key={cartItem.id}
+                cartItem={cartItem}
+                onAddUnit={handleAddUnit}
+                onDeductUnit={handleDeductUnit}
+                handleDeleteFromCart={handleDeleteFromCart}
+              />
+            );
           })}
         </Panel>
       </aside>
