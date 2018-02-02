@@ -4,6 +4,8 @@ import { createLogger } from 'redux-logger';
 
 import Products from './../modules/Products';
 import Cart from './../modules/Cart';
+import saveStoreToLocalStore from './../utils/findProductIndex';
+import saveStoretoLocalStore from '../utils/saveStoretoLocalStore';
 
 const reducers = combineReducers({
   products: Products.reducer,
@@ -20,22 +22,12 @@ const loggerMiddleware = createLogger({
 
 middleWare.push(loggerMiddleware);
 
-//const initialState = {};
-// const enhancers = [];
-// const middleware = [thunk];
+const initialState = JSON.parse(localStorage.getItem('cart')) || {};
 
-// if (process.env.NODE_ENV === 'development') {
-//   const devToolsExtension = window.devToolsExtension;
+const store = createStore(reducers, initialState, compose(applyMiddleware(...middleWare)));
 
-//   if (typeof devToolsExtension === 'function') {
-//     enhancers.push(devToolsExtension());
-//     //enhancers.push(logger);
-//   }
-// }
+store.subscribe(() => {
+  saveStoretoLocalStore(store.getState());
+});
 
-//const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
-
-//export default createStore(rootReducer, initialState, composedEnhancers);
-
-const store = createStore(reducers, {}, compose(applyMiddleware(...middleWare)));
 export default store;
