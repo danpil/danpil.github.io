@@ -31,9 +31,8 @@ const CartTotal = ({ cart, totalAmount }, { createNotification }) => {
           </h4>
           <Button
             onClick={() => {
-              console.log(createNotification);
-              createNotification('info', 'sdfgsdfg');
-              createNotification('success', 'sdfgsdfg');
+              console.log(JSON.stringify(cart));
+              createNotification('info', 'Save success!!!');
             }}
             bsSize="small"
             bsStyle="primary"
