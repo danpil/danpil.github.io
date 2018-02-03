@@ -4,8 +4,7 @@ import { createLogger } from 'redux-logger';
 
 import Products from './../modules/Products';
 import Cart from './../modules/Cart';
-import saveStoreToLocalStore from './../utils/findProductIndex';
-import saveStoretoLocalStore from '../utils/saveStoretoLocalStore';
+import saveStoretoLocalStore from '../utils/saveStoreToLocalStore';
 
 const reducers = combineReducers({
   products: Products.reducer,

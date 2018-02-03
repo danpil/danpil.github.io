@@ -12,7 +12,9 @@ const INIT_PRODUCTS = [
 export default function productsReducer(state = INIT_PRODUCTS, action = {}) {
   switch (action.type) {
     case ADD_PRODUCT:
-      return state.concat(action.payload);
+      state.push(action.payload);
+      // return state.concat(action.payload);
+      return [...state];
 
     case DELETE_PRODUCT:
       let indexToDel = findProductIndex(state, action.payload.id);

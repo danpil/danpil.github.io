@@ -7,9 +7,13 @@ export default function cartReducer(state = [], action = {}) {
       let existingIndex = findProductIndex(state, action.payload.id);
       if (existingIndex !== -1) {
         state[existingIndex].units += 1;
-        return state.concat([]);
+        //return state.concat([]);
+        return [...state];
       }
-      return state.concat(action.payload);
+      // return state.concat(action.payload);
+      //debugger;
+      state.push(action.payload);
+      return [...state];
 
     case UPDATE_ITEM_UNITS:
       let existingItemIndex = findProductIndex(state, action.payload.id);
@@ -17,7 +21,8 @@ export default function cartReducer(state = [], action = {}) {
         break;
       }
       state[existingItemIndex].units += action.payload.units;
-      return state.concat([]);
+      //return state.concat([]);
+      return [...state];
 
     case DELETE_FROM_CART:
       let indexToDel = findProductIndex(state, action.payload.id);

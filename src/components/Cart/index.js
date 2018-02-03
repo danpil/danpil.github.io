@@ -1,37 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { compose, branch, renderNothing } from 'recompose';
 
-import CartUI from './Cart';
 import Cart from './../../modules/Cart';
 
-const mapStateToProps = state => {
-  return {
-    cart: state.cart,
+export default ChildComponent => {
+  class RequireCart extends Component {
+    render() {
+      if (this.props.cart.length === 0) {
+        return null;
+      }
+      return <ChildComponent {...this.props} />;
+    }
+  }
+
+  const mapStateToProps = state => {
+    return {
+      cart: state.cart,
+    };
   };
+
+  const mapDispatchToProps = dispatch => ({
+    deleteFromCart(product) {
+      dispatch(Cart.actions.deleteFromCart(product));
+    },
+    updateItemUnits(product) {
+      dispatch(Cart.actions.updateItemUnits(product));
+    },
+  });
+
+  return connect(mapStateToProps, mapDispatchToProps)(RequireCart);
 };
-
-// deleteFromCart, updateItemUnits;
-
-const mapDispatchToProps = dispatch => ({
-  deleteFromCart(product) {
-    dispatch(Cart.actions.deleteFromCart(product));
-  },
-  updateItemUnits(product) {
-    dispatch(Cart.actions.updateItemUnits(product));
-  },
-});
-
-const enhance = compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  branch(({ cart }) => {
-    console.log(cart);
-    return cart.length === 0;
-  }, renderNothing),
-);
-
-const RequireCart = props => {
-  return <CartUI {...props} />;
-};
-
-export default enhance(RequireCart);

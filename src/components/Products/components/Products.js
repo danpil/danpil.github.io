@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
-import { compose, withHandlers } from 'recompose';
 
 import Product from './Product';
 

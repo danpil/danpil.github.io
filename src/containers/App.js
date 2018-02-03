@@ -2,16 +2,22 @@ import React from 'react';
 import { Grid, Row } from 'react-bootstrap';
 
 import Products from './../components/Products';
-import Cart from './../components/Cart';
+import CartContainer from './../components/Cart/CartContainer';
+import RequireCart from './../components/Cart';
+import NotificationContainer from './../components/Notification';
 
-const App = ({ products }) => {
+const App = () => {
+  const Cart = RequireCart(CartContainer);
+
   return (
     <Grid>
-      <Row>
-        <h1>Shopping Cart : Redux</h1>
-      </Row>
-      <Cart />
-      <Products />
+      <NotificationContainer>
+        <Row>
+          <h1>Shopping Cart : Redux</h1>
+        </Row>
+        <Cart />
+        <Products />
+      </NotificationContainer>
     </Grid>
   );
 };

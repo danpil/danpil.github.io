@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { branch, renderNothing, compose } from 'recompose';
 
-import ProductsUI from './Products';
+import Products from './components/Products';
 import Cart from './../../modules/Cart';
 
 const mapStateToProps = state => {
@@ -25,7 +25,7 @@ const enhance = compose(
 );
 
 const RequireProducts = props => {
-  return <ProductsUI {...props} />;
+  return <Products {...props} />;
 };
 
 export default enhance(RequireProducts);
