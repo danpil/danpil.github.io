@@ -1,7 +1,9 @@
 import { ADD_TO_CART, DELETE_FROM_CART, UPDATE_ITEM_UNITS } from './actionTypes';
 import findProductIndex from './../../utils/findProductIndex';
 
-export default function cartReducer(state = [], action = {}) {
+const initialState = JSON.parse(localStorage.getItem('cart')) || [];
+
+export default function cartReducer(state = initialState, action = {}) {
   switch (action.type) {
     case ADD_TO_CART:
       let existingIndex = findProductIndex(state, action.payload.id);

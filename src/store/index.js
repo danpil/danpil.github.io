@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger';
 
 import Products from './../modules/Products';
 import Cart from './../modules/Cart';
-import saveStoretoLocalStore from '../utils/saveStoreToLocalStore';
+import saveCartToLocalStore from '../utils/saveCartToLocalStore';
 
 const reducers = combineReducers({
   products: Products.reducer,
@@ -21,12 +21,12 @@ const loggerMiddleware = createLogger({
 
 middleWare.push(loggerMiddleware);
 
-const initialState = JSON.parse(localStorage.getItem('cart')) || {};
+const initialState = {};
 
 const store = createStore(reducers, initialState, compose(applyMiddleware(...middleWare)));
 
 store.subscribe(() => {
-  saveStoretoLocalStore(store.getState());
+  saveCartToLocalStore(store.getState().cart);
 });
 
 export default store;
