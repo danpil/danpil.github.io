@@ -40,6 +40,9 @@ body {
   @media only screen and (max-width: 40.625em) {
     .header {
       padding: 2.4rem 2.4rem; } }
+  @media only screen and (max-width: 40.625em) and (orientation: landscape) {
+    .header {
+      height: 100vh; } }
 
 .footer {
   display: flex;
@@ -94,9 +97,6 @@ body {
     font-weight: 300;
     letter-spacing: 2px; }
     @media only screen and (max-width: 40.625em) {
-      .header__text-box .heading-primary span:first-child {
-        font-size: 4rem; } }
-    @media only screen and (max-width: 30em) {
       .header__text-box .heading-primary span:first-child {
         font-size: 3rem;
         line-height: 3rem; } }
