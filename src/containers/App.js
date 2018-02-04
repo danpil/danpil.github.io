@@ -13,7 +13,7 @@ const App = () => {
     <Grid>
       <NotificationContainer>
         <Row>
-          <h1>Shopping Cart : Redux</h1>
+          <h1>Shopping Cart</h1>
         </Row>
         <Cart />
         <Products />
