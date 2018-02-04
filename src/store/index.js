@@ -23,6 +23,10 @@ middleWare.push(loggerMiddleware);
 
 const initialState = {};
 
+if (localStorage.getItem('cart')) {
+  initialState.cart = JSON.parse(localStorage.getItem('cart'));
+}
+
 const store = createStore(reducers, initialState, compose(applyMiddleware(...middleWare)));
 
 store.subscribe(() => {

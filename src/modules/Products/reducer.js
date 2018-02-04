@@ -1,5 +1,4 @@
-import { ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from './actionTypes';
-import findProductIndex from './../../utils/findProductIndex';
+import { ADD_PRODUCT } from './actionTypes';
 
 const INIT_PRODUCTS = [
   { id: 1, title: 'Apples', description: 'some red apples', price: 30 },
@@ -13,25 +12,7 @@ export default function productsReducer(state = INIT_PRODUCTS, action = {}) {
   switch (action.type) {
     case ADD_PRODUCT:
       state.push(action.payload);
-      // return state.concat(action.payload);
       return [...state];
-
-    case DELETE_PRODUCT:
-      let indexToDel = findProductIndex(state, action.payload.id);
-      return [...state.slice(0, indexToDel), ...state.slice(indexToDel + 1)];
-
-    case UPDATE_PRODUCT:
-      let indexToUpdate = findProductIndex(state, action.payload.id);
-      const newProductExtend = {
-        ...state[indexToUpdate],
-        title: action.payload.title,
-      };
-      return [
-        ...state.slice(0, indexToUpdate),
-        newProductExtend,
-        ...state.slice(indexToUpdate + 1),
-      ];
-
     default:
       return state;
   }
